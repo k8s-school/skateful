@@ -163,8 +163,4 @@ func main() {
 	}
 	fmt.Println("---")
 	err = s.Encode(&curatedPvs, os.Stdout)
-	if err != nil {
-		panic(err)
-	}
-
 }
