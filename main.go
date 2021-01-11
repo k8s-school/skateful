@@ -22,6 +22,7 @@ import (
 	"os"
 	"path/filepath"
 
+	v1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/serializer/json"
@@ -43,8 +44,7 @@ import (
 
 func main() {
 
-	s := json.NewYAMLSerializer(json.DefaultMetaFactory, scheme.Scheme,
-		scheme.Scheme)
+	s := json.NewYAMLSerializer(json.DefaultMetaFactory, scheme.Scheme, scheme.Scheme)
 
 	var kubeconfig *string
 	if home := homedir.HomeDir(); home != "" {
@@ -87,10 +87,24 @@ func main() {
 		log.Fatal(err.Error())
 	}
 
+	var curatedPvcs v1.PersistentVolumeClaimList
 	for _, pvc := range pvcs.Items {
 		log.Printf("PVC %v\n", pvc.ObjectMeta.GetName())
 		pvName := pvc.Spec.VolumeName
-		log.Printf("PV %v\n", pvName)
+		curatedPvc := v1.PersistentVolumeClaim{
+			TypeMeta: pvc.TypeMeta,
+			ObjectMeta: metav1.ObjectMeta{
+				Name: pvc.ObjectMeta.GetName(),
+			},
+			Spec: v1.PersistentVolumeClaimSpec{
+				AccessModes:      pvc.Spec.AccessModes,
+				Resources:        pvc.Spec.Resources,
+				StorageClassName: pvc.Spec.StorageClassName,
+				VolumeName:       pvc.Spec.VolumeName,
+			},
+		}
+		curatedPvcs.Items = append(curatedPvcs.Items, curatedPvc)
+		log.Printf("PVCs %v\n", curatedPvcs)
 		pv, err := clientset.CoreV1().PersistentVolumes().Get(context.TODO(), pvName, metav1.GetOptions{})
 		if err != nil {
 			log.Fatal(err.Error())
@@ -114,7 +128,7 @@ func main() {
 		fmt.Printf("Found pod %s in namespace %s\n", pod, namespace)
 	}
 
-	err = s.Encode(&pvcs.Items[0], os.Stdout)
+	err = s.Encode(&curatedPvcs, os.Stdout)
 	if err != nil {
 		panic(err)
 	}
