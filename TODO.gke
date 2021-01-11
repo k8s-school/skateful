@@ -1,0 +1,22 @@
+EXPORT PVC,PV
+
+kubectl krew install neat
+
+
+DO NOT WORK: https://stackoverflow.com/a/62516890/2784039
+
+https://stackoverflow.com/questions/61392206/kubectl-export-is-deprecated-any-alternative
+
+See https://github.com/ambient-innovation/k8s-backup/blob/01c1bfe750136648fd91e14dd691ba39bb05f282/k8s-backup.sh#L38
+
+
+function get_pvc {
+  kubectl get pvc -n ${1} -o=yaml --export | sed -e '/control\-plane\.alpha\.kubernetes\.io\/leader\:/d' -e '/resourceVersion: "[0-9]\+"/d' -e '/uid: [a-z0-9-]\+/d' -e '/selfLink: [a-z0-9A-Z/]\+/d'
+}
+
+function get_pv {
+  for pvolume in `kubectl get pvc -n ${1} -o=custom-columns=:.spec.volumeName` 
+  do
+     kubectl get pv -o=yaml --export --field-selector metadata.name=${pvolume} | sed -e '/resourceVersion: "[0-9]\+"/d' -e '/uid: [a-z0-9-]\+/d' -e '/selfLink: [a-z0-9A-Z/]\+/d'
+  done
+}
