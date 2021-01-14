@@ -1,4 +1,4 @@
-module github.com/lsst-dm/qserv-storage
+module github.com/k8s-school/skateful
 
 go 1.14
 

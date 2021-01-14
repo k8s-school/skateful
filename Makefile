@@ -1,5 +1,5 @@
 OUT := skateful 
-PKG := github.com/k8s-school/clouder
+PKG := github.com/k8s-school/skateful
 VERSION := $(shell git describe --always --long --dirty)
 PKG_LIST := $(shell go list ${PKG}/... | grep -v /vendor/)
 GO_FILES := $(shell find . -name '*.go' | grep -v /vendor/)
