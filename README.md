@@ -1,18 +1,20 @@
-Manage Qserv local storage
+Manage PV/PVC for a stateful application
 
+- Create yaml for PVs/PVCs, for local storage or GKE
+
+For local storage
 - Install local storage class
 - Create data directories on k8s nodes
-- Create yaml for PVs/PVCs
 
-#  Use Kubernetes local storage class with Qserv
+#  Use Kubernetes local storage class
 
 ## Pre-requisites
 
 Clone repository
 
 ```shell
-git clone https://github.com/lsst-dm/qserv-storage.git
-cd qserv-storage
+git clone https://github.com/k8s-school/skateful.git
+cd skateful
 cp env.example.in2p3.sh env.sh
 ```
 
