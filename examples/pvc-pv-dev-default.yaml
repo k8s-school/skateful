@@ -1,0 +1,542 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    name: qserv-data-qserv-czar-0
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 500Gi
+    storageClassName: czar
+    volumeName: pvc-5a61a7fd-864a-459d-9b62-6dee8b12b56d
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    name: qserv-data-qserv-ingest-db-0
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 100Gi
+    storageClassName: qserv
+    volumeName: pvc-dc26e4f1-0d5c-4e74-9816-750699552d26
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    name: qserv-data-qserv-repl-db-0
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 100Gi
+    storageClassName: qserv
+    volumeName: pvc-30331bd8-3491-4097-ae1d-4d021a059dff
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    name: qserv-data-qserv-worker-0
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 2Ti
+    storageClassName: qserv
+    volumeName: pvc-4b867172-50a4-419e-ad08-9296a77573dc
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    name: qserv-data-qserv-worker-1
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 2Ti
+    storageClassName: qserv
+    volumeName: pvc-5ec85538-3b61-4078-8660-14afd45a7a8b
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    name: qserv-data-qserv-worker-2
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 2Ti
+    storageClassName: qserv
+    volumeName: pvc-d137eae5-ff40-45c0-8ac2-9ec8230be839
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    name: qserv-data-qserv-worker-3
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 2Ti
+    storageClassName: qserv
+    volumeName: pvc-ace42c7e-e4bd-4ed7-ba5d-d0d430cc0c3d
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    name: qserv-data-qserv-worker-4
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 2Ti
+    storageClassName: qserv
+    volumeName: pvc-16bee5d9-6613-4f68-b003-5152fcd49ef6
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    name: qserv-data-qserv-worker-5
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 2Ti
+    storageClassName: qserv
+    volumeName: pvc-f80e212f-3a26-454d-912a-52f754ede0d6
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    name: qserv-data-qserv-worker-6
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 2Ti
+    storageClassName: qserv
+    volumeName: pvc-05dcdf52-ebfa-43cc-9562-bc868406b0ad
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    name: qserv-data-qserv-worker-7
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 2Ti
+    storageClassName: qserv
+    volumeName: pvc-3dea5fc9-6ca7-492b-b165-c53a6ce4a97c
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    name: qserv-data-qserv-worker-8
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 2Ti
+    storageClassName: qserv
+    volumeName: pvc-1514b2e1-ba1f-4fff-bf67-fe4fa1a793ec
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    name: qserv-data-qserv-worker-9
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 2Ti
+    storageClassName: qserv
+    volumeName: pvc-32f7b294-1352-4332-ad30-6931a0139e7c
+  status: {}
+kind: List
+metadata: {}
+---
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    creationTimestamp: null
+    name: pvc-5a61a7fd-864a-459d-9b62-6dee8b12b56d
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 500Gi
+    csi:
+      driver: pd.csi.storage.gke.io
+      fsType: ext4
+      volumeAttributes:
+        storage.kubernetes.io/csiProvisionerIdentity: 1627104121942-8081-pd.csi.storage.gke.io
+      volumeHandle: projects/qserv-dev-3d7e/zones/us-central1-c/disks/pvc-5a61a7fd-864a-459d-9b62-6dee8b12b56d
+    nodeAffinity:
+      required:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: topology.gke.io/zone
+            operator: In
+            values:
+            - us-central1-c
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: czar
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    creationTimestamp: null
+    name: pvc-dc26e4f1-0d5c-4e74-9816-750699552d26
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 100Gi
+    csi:
+      driver: pd.csi.storage.gke.io
+      fsType: ext4
+      volumeAttributes:
+        storage.kubernetes.io/csiProvisionerIdentity: 1627104121942-8081-pd.csi.storage.gke.io
+      volumeHandle: projects/qserv-dev-3d7e/zones/us-central1-c/disks/pvc-dc26e4f1-0d5c-4e74-9816-750699552d26
+    nodeAffinity:
+      required:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: topology.gke.io/zone
+            operator: In
+            values:
+            - us-central1-c
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: qserv
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    creationTimestamp: null
+    name: pvc-30331bd8-3491-4097-ae1d-4d021a059dff
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 100Gi
+    csi:
+      driver: pd.csi.storage.gke.io
+      fsType: ext4
+      volumeAttributes:
+        storage.kubernetes.io/csiProvisionerIdentity: 1627104121942-8081-pd.csi.storage.gke.io
+      volumeHandle: projects/qserv-dev-3d7e/zones/us-central1-c/disks/pvc-30331bd8-3491-4097-ae1d-4d021a059dff
+    nodeAffinity:
+      required:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: topology.gke.io/zone
+            operator: In
+            values:
+            - us-central1-c
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: qserv
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    creationTimestamp: null
+    name: pvc-4b867172-50a4-419e-ad08-9296a77573dc
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 2Ti
+    csi:
+      driver: pd.csi.storage.gke.io
+      fsType: ext4
+      volumeAttributes:
+        storage.kubernetes.io/csiProvisionerIdentity: 1627104121942-8081-pd.csi.storage.gke.io
+      volumeHandle: projects/qserv-dev-3d7e/zones/us-central1-c/disks/pvc-4b867172-50a4-419e-ad08-9296a77573dc
+    nodeAffinity:
+      required:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: topology.gke.io/zone
+            operator: In
+            values:
+            - us-central1-c
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: qserv
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    creationTimestamp: null
+    name: pvc-5ec85538-3b61-4078-8660-14afd45a7a8b
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 2Ti
+    csi:
+      driver: pd.csi.storage.gke.io
+      fsType: ext4
+      volumeAttributes:
+        storage.kubernetes.io/csiProvisionerIdentity: 1627104121942-8081-pd.csi.storage.gke.io
+      volumeHandle: projects/qserv-dev-3d7e/zones/us-central1-c/disks/pvc-5ec85538-3b61-4078-8660-14afd45a7a8b
+    nodeAffinity:
+      required:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: topology.gke.io/zone
+            operator: In
+            values:
+            - us-central1-c
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: qserv
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    creationTimestamp: null
+    name: pvc-d137eae5-ff40-45c0-8ac2-9ec8230be839
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 2Ti
+    csi:
+      driver: pd.csi.storage.gke.io
+      fsType: ext4
+      volumeAttributes:
+        storage.kubernetes.io/csiProvisionerIdentity: 1627104121942-8081-pd.csi.storage.gke.io
+      volumeHandle: projects/qserv-dev-3d7e/zones/us-central1-c/disks/pvc-d137eae5-ff40-45c0-8ac2-9ec8230be839
+    nodeAffinity:
+      required:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: topology.gke.io/zone
+            operator: In
+            values:
+            - us-central1-c
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: qserv
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    creationTimestamp: null
+    name: pvc-ace42c7e-e4bd-4ed7-ba5d-d0d430cc0c3d
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 2Ti
+    csi:
+      driver: pd.csi.storage.gke.io
+      fsType: ext4
+      volumeAttributes:
+        storage.kubernetes.io/csiProvisionerIdentity: 1627104121942-8081-pd.csi.storage.gke.io
+      volumeHandle: projects/qserv-dev-3d7e/zones/us-central1-c/disks/pvc-ace42c7e-e4bd-4ed7-ba5d-d0d430cc0c3d
+    nodeAffinity:
+      required:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: topology.gke.io/zone
+            operator: In
+            values:
+            - us-central1-c
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: qserv
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    creationTimestamp: null
+    name: pvc-16bee5d9-6613-4f68-b003-5152fcd49ef6
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 2Ti
+    csi:
+      driver: pd.csi.storage.gke.io
+      fsType: ext4
+      volumeAttributes:
+        storage.kubernetes.io/csiProvisionerIdentity: 1627104121942-8081-pd.csi.storage.gke.io
+      volumeHandle: projects/qserv-dev-3d7e/zones/us-central1-c/disks/pvc-16bee5d9-6613-4f68-b003-5152fcd49ef6
+    nodeAffinity:
+      required:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: topology.gke.io/zone
+            operator: In
+            values:
+            - us-central1-c
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: qserv
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    creationTimestamp: null
+    name: pvc-f80e212f-3a26-454d-912a-52f754ede0d6
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 2Ti
+    csi:
+      driver: pd.csi.storage.gke.io
+      fsType: ext4
+      volumeAttributes:
+        storage.kubernetes.io/csiProvisionerIdentity: 1627104121942-8081-pd.csi.storage.gke.io
+      volumeHandle: projects/qserv-dev-3d7e/zones/us-central1-c/disks/pvc-f80e212f-3a26-454d-912a-52f754ede0d6
+    nodeAffinity:
+      required:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: topology.gke.io/zone
+            operator: In
+            values:
+            - us-central1-c
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: qserv
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    creationTimestamp: null
+    name: pvc-05dcdf52-ebfa-43cc-9562-bc868406b0ad
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 2Ti
+    csi:
+      driver: pd.csi.storage.gke.io
+      fsType: ext4
+      volumeAttributes:
+        storage.kubernetes.io/csiProvisionerIdentity: 1627104121942-8081-pd.csi.storage.gke.io
+      volumeHandle: projects/qserv-dev-3d7e/zones/us-central1-c/disks/pvc-05dcdf52-ebfa-43cc-9562-bc868406b0ad
+    nodeAffinity:
+      required:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: topology.gke.io/zone
+            operator: In
+            values:
+            - us-central1-c
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: qserv
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    creationTimestamp: null
+    name: pvc-3dea5fc9-6ca7-492b-b165-c53a6ce4a97c
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 2Ti
+    csi:
+      driver: pd.csi.storage.gke.io
+      fsType: ext4
+      volumeAttributes:
+        storage.kubernetes.io/csiProvisionerIdentity: 1627104121942-8081-pd.csi.storage.gke.io
+      volumeHandle: projects/qserv-dev-3d7e/zones/us-central1-c/disks/pvc-3dea5fc9-6ca7-492b-b165-c53a6ce4a97c
+    nodeAffinity:
+      required:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: topology.gke.io/zone
+            operator: In
+            values:
+            - us-central1-c
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: qserv
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    creationTimestamp: null
+    name: pvc-1514b2e1-ba1f-4fff-bf67-fe4fa1a793ec
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 2Ti
+    csi:
+      driver: pd.csi.storage.gke.io
+      fsType: ext4
+      volumeAttributes:
+        storage.kubernetes.io/csiProvisionerIdentity: 1627104121942-8081-pd.csi.storage.gke.io
+      volumeHandle: projects/qserv-dev-3d7e/zones/us-central1-c/disks/pvc-1514b2e1-ba1f-4fff-bf67-fe4fa1a793ec
+    nodeAffinity:
+      required:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: topology.gke.io/zone
+            operator: In
+            values:
+            - us-central1-c
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: qserv
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    creationTimestamp: null
+    name: pvc-32f7b294-1352-4332-ad30-6931a0139e7c
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 2Ti
+    csi:
+      driver: pd.csi.storage.gke.io
+      fsType: ext4
+      volumeAttributes:
+        storage.kubernetes.io/csiProvisionerIdentity: 1627104121942-8081-pd.csi.storage.gke.io
+      volumeHandle: projects/qserv-dev-3d7e/zones/us-central1-c/disks/pvc-32f7b294-1352-4332-ad30-6931a0139e7c
+    nodeAffinity:
+      required:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: topology.gke.io/zone
+            operator: In
+            values:
+            - us-central1-c
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: qserv
+  status: {}
+kind: List
+metadata: {}
