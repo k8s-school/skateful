@@ -23,7 +23,7 @@ Customize `env.sh` file.
 ## 1 - Create data directories
 
 ```shell
-./mkdir.sh
+./mkdirs.sh
 # ingest/ directory need to be manually created on Qserv master node
 ```
 

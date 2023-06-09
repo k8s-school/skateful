@@ -95,7 +95,7 @@ DATA_PATH="$DATA_DIR/replication"
 
 echo "Creating persistent volume and claim for Replication Controller"
 PVC_NAME="${PVC_PREFIX}-repl-ctl-0"
-DATA_PATH="$DATA_DIR/replication"
+DATA_PATH="$DATA_DIR/replication-controller"
 "$DIR"/yaml-builder.py -n "$NS" -P "$DATA_PATH" -p "$PVC_NAME" -H $REPL_CTL_HOST -o "$YAML_OUT_DIR" -i "$INSTANCE"
 
 echo "Creating persistent volumes and claims for Ingest Database"
