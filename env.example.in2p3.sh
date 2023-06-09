@@ -9,6 +9,7 @@ NS=$([ ! -z "$NS" ] && echo "$NS" || echo "default")
 PARALLEL_SSH_CFG="$HOME/.ssh/sshqserv"
 PARALLEL_SSH_MASTER="$HOME/.ssh/sshqservmaster"
 
+REPL_CTL_HOST="ccqserv201"
 REPL_DB_HOST="ccqserv201"
 INGEST_DB_HOST="ccqserv201"
 

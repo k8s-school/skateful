@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
 # LSST Data Management System
 # Copyright 2014 LSST Corporation.
-# 
+#
 # This product includes software developed by the
 # LSST Project (http://www.lsst.org/).
 #
@@ -10,14 +10,14 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
-# You should have received a copy of the LSST License Statement and 
-# the GNU General Public License along with this program.  If not, 
+#
+# You should have received a copy of the LSST License Statement and
+# the GNU General Public License along with this program.  If not,
 # see <http://www.lsstcorp.org/LegalNotices/>.
 
 # Creates K8s Volumes and Claims for Master and Workers
@@ -25,7 +25,7 @@
 # @author Benjamin Roziere, IN2P3
 # @author Fabrice Jammes, IN2P3
 
-set -eux
+set -euxo pipefail
 
 DIR=$(cd "$(dirname "$0")"; pwd -P)
 
@@ -88,10 +88,15 @@ do
     COUNT=$((COUNT+1))
 done
 
-echo "Creating persistent volumes and claims for Replication Database"
+echo "Creating persistent volume and claim for Replication Database"
 PVC_NAME="${PVC_PREFIX}-repl-db-0"
 DATA_PATH="$DATA_DIR/replication"
 "$DIR"/yaml-builder.py -n "$NS" -P "$DATA_PATH" -p "$PVC_NAME" -H $REPL_DB_HOST -o "$YAML_OUT_DIR" -i "$INSTANCE"
+
+echo "Creating persistent volume and claim for Replication Controller"
+PVC_NAME="${PVC_PREFIX}-repl-ctl-0"
+DATA_PATH="$DATA_DIR/replication"
+"$DIR"/yaml-builder.py -n "$NS" -P "$DATA_PATH" -p "$PVC_NAME" -H $REPL_CTL_HOST -o "$YAML_OUT_DIR" -i "$INSTANCE"
 
 echo "Creating persistent volumes and claims for Ingest Database"
 PVC_NAME="${PVC_PREFIX}-ingest-db-0"
