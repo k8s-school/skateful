@@ -116,6 +116,9 @@ func getYaml() {
 			if err != nil {
 				log.Fatal(err.Error())
 			}
+			claimRef := pv.Spec.ClaimRef
+			claimRef.UID = ""
+			claimRef.ResourceVersion = ""
 			curatedPv := v1.PersistentVolume{
 				TypeMeta: metav1.TypeMeta{
 					APIVersion: "v1",
@@ -127,6 +130,7 @@ func getYaml() {
 				Spec: v1.PersistentVolumeSpec{
 					AccessModes:                   pv.Spec.AccessModes,
 					Capacity:                      pv.Spec.Capacity,
+					ClaimRef:                      claimRef,
 					NodeAffinity:                  pv.Spec.NodeAffinity,
 					PersistentVolumeReclaimPolicy: pv.Spec.PersistentVolumeReclaimPolicy,
 					PersistentVolumeSource:        pv.Spec.PersistentVolumeSource,
