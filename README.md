@@ -1,12 +1,21 @@
-Manage PV/PVC for a stateful application
+# Manage PVs/PVCs for a stateful application
 
-- Create yaml for PVs/PVCs, for local storage or GKE
+# Backup PVCs/PVs for CSI storage
+
+```
+# Install
+go install github.com/k8s-school/skateful@latest
+# Watch inline doc to access user manual
+skateful -h
+```
+
+# Create yaml for PVs/PVCs, for localStorageClass
+
+This feature will move into `skateful` binary ASAP.
 
 For local storage
 - Install local storage class
 - Create data directories on k8s nodes
-
-#  Use Kubernetes local storage class
 
 ## Pre-requisites
 

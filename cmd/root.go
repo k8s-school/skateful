@@ -5,7 +5,6 @@ package cmd
 
 import (
 	"encoding/json"
-	"flag"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -23,16 +22,10 @@ var (
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "skateful",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
-	// Uncomment the following line if your bare application
-	// has an action associated with it:
-	// Run: func(cmd *cobra.Command, args []string) { },
+	Short: "Tools for managing stateful applications in kubernetes",
+	Long: `Useful tools for managing stateful applications in kubernetes.
+- Backup PVs/PVCs for a Qserv deployment which is based on CSI storage.
+- TODO Can create PVCs/PVs for a Qserv deployment which use localStorageClass.`,
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -52,8 +45,6 @@ func init() {
 	// will be global for your application.
 
 	// rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.skateful.yaml)")
-
-	flag.Parse()
 
 	rootCmd.PersistentFlags().StringVar(&storage, "storage", csi, "Storage type: 'csi' or 'local'")
 	rootCmd.PersistentFlags().StringVar(&outFile, "out", "pvc-pv.yaml", "Path to output file")
