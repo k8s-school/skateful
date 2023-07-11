@@ -3,11 +3,11 @@ module github.com/k8s-school/skateful
 go 1.14
 
 require (
-	github.com/gophercloud/gophercloud v0.1.0 // indirect
-	k8s.io/api v0.20.1
-	k8s.io/apimachinery v0.20.1
-	k8s.io/client-go v0.20.1
-	k8s.io/klog v1.0.0 // indirect
-	k8s.io/kubectl v0.20.1
-	sigs.k8s.io/structured-merge-diff/v3 v3.0.0 // indirect
+	github.com/spf13/cobra v1.7.0
+	github.com/spf13/viper v1.8.1
+	go.uber.org/zap v1.19.0
+	k8s.io/api v0.24.1
+	k8s.io/apimachinery v0.24.1
+	k8s.io/client-go v0.24.1
+	k8s.io/kubectl v0.24.1
 )
