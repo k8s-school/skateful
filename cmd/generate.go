@@ -27,10 +27,12 @@ var (
 var generateCmd = &cobra.Command{
 	Use:   "generate",
 	Short: "Generate curated yaml for pvc and pv",
-	Long: `Use a time range to retrieve a set of PVs and generate curated yaml
-for these PVs and their related Qserv PVCs. This can be useful for restoring PVs and PVCs in case of disaster recovery.
+	Long: `Use a time range to retrieve a set of PVs and generate curated yaml for these PVs and their related Qserv PVCs.
+Curated mean the yaml can be used using 'kubectl apply'. This can be useful for restoring PVs and PVCs in case of disaster recovery.
 Underlying storage must be CSI and all PVs must be bound to an existing storage medium.
 `,
+	Example: `  # Generate curated yaml for PV created between 2021-08-19T18:00:14Z and 2021-08-19T19:00:14Z
+  skateful generate  -s "2021-08-19T18:00:14Z" -e "2021-08-19T19:00:14Z"`,
 	Run: func(cmd *cobra.Command, args []string) {
 		t_start, _ := time.Parse(time.RFC3339, start)
 		t_end, _ := time.Parse(time.RFC3339, end)

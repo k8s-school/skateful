@@ -5,7 +5,6 @@ package cmd
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"os"
 
@@ -22,11 +21,10 @@ import (
 var getCmd = &cobra.Command{
 	Use:   "get",
 	Short: "Get curated yaml for pvc and pv",
-	Long: `Extract PVCs and PVs from a Qserv deployment
-
-Create a YAML file which can be used to recreate the same PVCs and PVs`,
+	Long: `Extract PVCs and PVs from a Qserv deployment and generate curated yaml for these PVs / PVCs.
+Curated mean the yaml can be used using 'kubectl apply'. This can be useful for restoring PVs and PVCs in case of disaster recovery.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("get called")
+		logger.Info("get called")
 		getYaml()
 	},
 }
