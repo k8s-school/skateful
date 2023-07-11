@@ -5,7 +5,6 @@ package cmd
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"os"
 	"time"
@@ -19,14 +18,24 @@ import (
 	"k8s.io/kubectl/pkg/scheme"
 )
 
+var (
+	start string
+	end   string
+)
+
 // generateCmd represents the generate command
 var generateCmd = &cobra.Command{
 	Use:   "generate",
 	Short: "Generate curated yaml for pvc and pv",
-	Long:  `Use a time range to retrieve a set of PV and generate curated yaml for these PVs and their Qserv PVCs`,
+	Long: `Use a time range to retrieve a set of PVs and generate curated yaml
+for these PVs and their related Qserv PVCs. This can be useful for restoring PVs and PVCs in case of disaster recovery.
+Underlying storage must be CSI and all PVs must be bound to an existing storage medium.
+`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("generate called")
-		generateYaml()
+		t_start, _ := time.Parse(time.RFC3339, start)
+		t_end, _ := time.Parse(time.RFC3339, end)
+		logger.Infof("Generate yaml for PVs created between %s and %s and their PVCs", start, end)
+		generateYaml(t_start, t_end)
 	},
 }
 
@@ -41,22 +50,24 @@ func init() {
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// generateCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	generateCmd.Flags().StringVarP(&start, "start", "s", "2021-08-19T18:00:14Z", "Start date for PVs selection, use RFC3339 format")
+	generateCmd.Flags().StringVarP(&end, "end", "e", "2021-08-19T19:00:14Z", "End date for PVs selection, use RFC3339 format")
+
 }
 
+// Check if a given time is in a given time range
 func inTimeSpan(start, end, check time.Time) bool {
 	return check.After(start) && check.Before(end)
 }
 
-func generateYaml() {
+// Look for PVs in a given time range and
+// generate curated yaml for PVs and PVCs
+func generateYaml(start time.Time, end time.Time) {
 
 	s := json.NewYAMLSerializer(json.DefaultMetaFactory, scheme.Scheme, scheme.Scheme)
 
 	storage := viper.GetString("storage")
 	outFile := viper.GetString("out")
-
-	start, _ := time.Parse(time.RFC3339, "2021-08-19T18:00:14Z")
-	end, _ := time.Parse(time.RFC3339, "2021-08-19T19:00:14Z")
 
 	switch storage {
 	case csi:
